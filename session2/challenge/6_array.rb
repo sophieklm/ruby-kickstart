@@ -14,3 +14,12 @@
 # prime_chars? ['ab', 'cd']       # => false
 # prime_chars? ['a', 'bcd']       # => false
 # prime_chars? ['a', 'b', 'cd']   # => false
+
+def prime_chars?(array)
+    n = array.join.length
+    return false if n < 2
+   (2..Math.sqrt(n).round).each do |i|
+     return false if n % i == 0
+    end
+    return true
+end
