@@ -8,5 +8,11 @@
 # ten_twenty(6) # => 10
 
 def ten_twenty(n)
-  # your code goes here
+  if n % 2 == 0
+    10 
+  elsif n % 2 !=0 
+    20
+  else 
+    "That's not a number"
+  end
 end
