@@ -17,3 +17,23 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+
+def match_maker(boolean, *elements)
+  output = []
+  elements.each_slice(2) do |x,y|
+  if boolean
+      if !(x && y) && !(!x && !y)
+        output.push(true)
+      else
+        output.push(false)
+      end
+  else
+      if (x && y) || (!x && !y)
+        output.push(true)
+      else
+        output.push(false)
+      end
+  end
+  end
+  output
+end
