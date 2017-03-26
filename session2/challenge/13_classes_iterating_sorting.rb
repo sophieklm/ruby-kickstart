@@ -15,6 +15,58 @@
 #        return self.date == other.date
 #      end
 
+#not working -  User A new user has no blogs
+
+require 'date'
+
+class User
+  attr_accessor :username, :blogs
+  
+  def initialize(username)
+    self.username = username
+    self.blogs = []
+  end
+  
+  def add_blog(date, text)
+    user = self.username
+    blog = Blog.new(date,user,text)
+    blogs << blog
+  end
+  
+  def blogs
+    self.blogs = blogs.sort { |x,y| x.date <=> y.date}
+  end
+
+end
+
+class Blog
+  
+  attr_accessor :text, :date, :user
+  
+  def initialize(date, user, text)
+    self.date = date
+    self.user = user
+    self.text = text
+  end
+  
+  def summary
+    text.split[0...10].join(" ")
+  end
+  
+  def entry
+    "#{user.username} #{date}\n#{text}"
+  end
+  
+  def ==(other)
+    self.date == other.date &&
+    self.text == other.text &&
+    self.user == other.user
+  end
+  
+end
+
+
+
 
 
 # ==========  EXAMPLE  ==========
@@ -63,4 +115,3 @@
 
 # date docs are at: http://ruby-doc.org/core/classes/Date.html
 # don't spend too much time worrying about them :)
-require 'date'
