@@ -7,3 +7,8 @@
 #
 # print_list_in_reverse head   # >> "1\n2\n"
 
+def print_list_in_reverse(linked_list)
+  return unless linked_list
+  print_list_in_reverse linked_list[:next] 
+  puts linked_list[:data]
+end
