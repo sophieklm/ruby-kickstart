@@ -31,12 +31,9 @@ class User
     user = self.username
     blog = Blog.new(date,user,text)
     blogs << blog
+    self.blogs = blogs.sort_by { |blog| blog.date }.reverse
+    blog
   end
-  
-  def blogs
-    self.blogs = blogs.sort { |x,y| x.date <=> y.date}
-  end
-
 end
 
 class Blog
