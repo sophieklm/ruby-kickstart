@@ -16,3 +16,23 @@
 #   order << i
 # end
 # order # => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+
+def spiral_access(arr, &block)
+  def rotate_anticlockwise(arr)
+    arr.map(&:reverse).transpose
+  end
+  
+  out = []
+  a = arr.map {|i| i.dup}
+  while a.any?
+    out.concat(a.shift)
+    a = rotate_anticlockwise(a) {|x| block.call x}
+  end
+  out
+end
+
+puts spiral_access([[1]])
+puts spiral_access([[ 1,  2,  3,  4, 5],[16, 17, 18, 19, 6],[15, 24, 25, 20, 7],[14, 23, 22, 21, 8],[13, 12, 11, 10, 9]])
+
+
+#http://stackoverflow.com/questions/28837273/looping-in-a-spiral-outside-in
